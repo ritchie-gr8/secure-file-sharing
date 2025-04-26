@@ -1,6 +1,6 @@
 use async_trait::async_trait;
 use chrono::{DateTime, Utc};
-use sqlx::{Pool, Postgres, pool, query};
+use sqlx::{Pool, Postgres};
 use uuid::Uuid;
 
 use crate::models::{File, ReceiveFileDetails, SentFileDetails, SharedLink, User};
@@ -391,18 +391,15 @@ impl UserExt for DBClient {
         Ok((files, total_count))
     }
 
-     async fn delete_expired_files(
-        &self
-    ) -> Result<(), sqlx::Error> {
-
+    async fn delete_expired_files(&self) -> Result<(), sqlx::Error> {
         let expired_shared_links: Vec<Uuid> = sqlx::query_scalar!(
             r#"
             SELECT sl.id
             FROM shared_links sl
             WHERE sl.expiration_date < NOW()
             "#,
-        ).
-        fetch_all(&self.pool)
+        )
+        .fetch_all(&self.pool)
         .await?;
 
         if expired_shared_links.is_empty() {
@@ -447,6 +444,5 @@ impl UserExt for DBClient {
         println!("Successfully deleted expired files and their shared links.");
 
         Ok(())
-
     }
 }
