@@ -67,19 +67,13 @@ pub struct HttpError {
 }
 
 impl HttpError {
-    pub fn new(message: impl Into<String>, status: StatusCode) -> Self {
-        HttpError {
-            message: message.into(),
-            status,
-        }
-    }
-
     pub fn server_error(message: impl Into<String>) -> Self {
         HttpError {
             message: message.into(),
             status: StatusCode::INTERNAL_SERVER_ERROR,
         }
     }
+
     pub fn bad_request(message: impl Into<String>) -> Self {
         HttpError {
             message: message.into(),
