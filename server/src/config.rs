@@ -17,7 +17,7 @@ impl Config {
             database_url,
             jwt_secret,
             jwt_max_age: jwt_maxage.parse::<i64>().unwrap(),
-            port,
+            port: port.parse::<u16>().expect("PORT must be a valid number"),
         }
     }
 }
