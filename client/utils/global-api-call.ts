@@ -16,6 +16,7 @@ export const GlobalApiCall = async ({
 
     const token = session?.accessToken ?? null;
 
+    console.log('url', url)
     const response = await fetch(url, {
       ...options,
       credentials: "include",

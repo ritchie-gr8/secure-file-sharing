@@ -8,7 +8,7 @@ const API_BASE_URL = process.env.API_BASE_URL;
 export async function getMe() {
   return withActionHandler(async () => {
     const response = await GlobalApiCall({
-      url: `${API_BASE_URL}/users/me`,
+      url: `${API_BASE_URL}/user/me`,
       options: {
         method: "get",
         cache: "no-store",
@@ -21,7 +21,7 @@ export async function getMe() {
 export async function updateUserName({ name }: { name: string }) {
   return withActionHandler(async () => {
     const response = await GlobalApiCall({
-      url: `${API_BASE_URL}/users/name`,
+      url: `${API_BASE_URL}/user/name`,
       options: {
         method: "put",
         body: JSON.stringify({ name }),
@@ -43,7 +43,7 @@ export async function updateUserPassword({
 }) {
   return withActionHandler(async () => {
     const response = await GlobalApiCall({
-      url: `${API_BASE_URL}/users/password`,
+      url: `${API_BASE_URL}/user/password`,
       options: {
         method: "put",
         body: JSON.stringify({
