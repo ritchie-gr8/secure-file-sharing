@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n              SELECT COUNT(*)\n              FROM shared_links sl\n              JOIN files f ON sl.file_id = f.id\n              WHERE sl.recipient_user_id = $1\n          ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "count",
+        "type_info": "Int8"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      null
+    ]
+  },
+  "hash": "4efca874265e7849a2639ad4ca4544f140a1d8d00782490875cde2c0d6ad62f9"
+}
