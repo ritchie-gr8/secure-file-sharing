@@ -1,5 +1,6 @@
 import { useCurrentUserServer } from "@/hooks/use-current-user-server";
 import { RedirectError } from "./error-utils";
+import toast from "react-hot-toast";
 
 interface GlobalApiCallProps {
   url: string;
@@ -16,7 +17,7 @@ export const GlobalApiCall = async ({
 
     const token = session?.accessToken ?? null;
 
-    console.log('url', url)
+    console.log('fetching url:', url)
     const response = await fetch(url, {
       ...options,
       credentials: "include",
@@ -27,6 +28,7 @@ export const GlobalApiCall = async ({
     });
 
     if (response.status === 401) {
+      toast.error("session expired");
       throw new RedirectError(302, "/logout", "session expired");
     }
 

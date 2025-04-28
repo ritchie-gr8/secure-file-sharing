@@ -26,6 +26,7 @@ export default auth((req) => {
   }
 
   if (!isLoggedIn) {
+    console.log("not logged in");
     return Response.redirect(new URL("/login", nextUrl));
   }
 

@@ -22,8 +22,8 @@ const Header = () => {
         </Link>
 
         <Link
-          href={"/recieve"}
-          className={cn(pathName === "/recieve" ? "underline" : "no-underline")}
+          href={"/receive"}
+          className={cn(pathName === "/receive" ? "underline" : "no-underline")}
         >
           Recieve file
         </Link>

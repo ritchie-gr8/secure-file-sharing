@@ -48,7 +48,7 @@ export async function receiveFileList({
 export async function searchEmail(query: string) {
   return withActionHandler(async () => {
     const response = await GlobalApiCall({
-      url: `${API_BASE_URL}/users/search-emails?query=${query}`,
+      url: `${API_BASE_URL}/user/search-emails?query=${query}`,
       options: {
         method: "get",
         cache: "no-store",
